@@ -5,12 +5,13 @@ require 'webrat/sinatra'
 require 'webrat/selenium'
 require File.join(File.dirname(__FILE__), '..', 'as_time_goes_by.rb')
 
+Webrat.configuration.application_port = 4567
+Webrat.configuration.application_framework = :sinatra
+
 if ENV['SELENIUM'].nil?
   Webrat.configuration.mode = :sinatra
 else
   Webrat.configuration.mode = :selenium
-  Webrat.configuration.application_port = 4567
-  Webrat.configuration.application_type = :sinatra
 end
 
 Spec::Runner.configure do |config|
